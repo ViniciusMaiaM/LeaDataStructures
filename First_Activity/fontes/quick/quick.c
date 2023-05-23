@@ -16,10 +16,10 @@ int main(int argc, char **argv)
     vetor = (int *)malloc(n * sizeof(int));
     srand(time(NULL));
     for (i = 0; i < n; i++)
-        vetor[i] = rand();
+        vetor[i] = rand() % n;
 
     clock_gettime(CLOCK_MONOTONIC, &b);
-    quick_sort(vetor, 0,n-1);
+    quick_sort(vetor, 0,n);
     clock_gettime(CLOCK_MONOTONIC, &a);
 
     t = (a.tv_sec * 1e9 + a.tv_nsec) - (b.tv_sec * 1e9 + b.tv_nsec);
@@ -49,28 +49,26 @@ void quick_sort(int *array, int start, int end)
 
 int partition(int *array, int start, int end)
 {
-    int pivot = array[end]; // Pivot is the last element
-    int index = start;
-    unsigned int i;
+    unsigned int d = start-1;
 
-    for (i = start; i < end; i++)
+    for (int i = start; i < (end-1); i++)
     {
 
         // Verifying if the element is smaller than pivot
-        if (array[i] <= pivot)
+        if (array[i] <= array[end])
         {
+            d++;
             // Changes the elements
-            swap(&array[i], &array[index]);
+            swap(&array[d], &array[i]);
             // Increments the pivot
-            index++;
         }
     }
 
     // Changes pivot
-    swap(&array[index], &array[end]);
+    swap(&array[d+1], &array[end]);
 
     // Returns the pivot index
-    return index;
+    return d+1;
 }
 
 void swap(int *a, int *b)

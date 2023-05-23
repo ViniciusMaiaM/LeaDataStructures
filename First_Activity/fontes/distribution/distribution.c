@@ -1,68 +1,77 @@
-// C Program for counting sort
-#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/time.h>
+#include <time.h>
 
-void countingSort(int array[], int size) {
-  int output[10];
+void distribution_sort(int *v, int n)
+{
+  int i;
+  int max = v[0];
+  int min = v[0];
 
-  // Find the largest element of the array
-  int max = array[0];
-  for (int i = 1; i < size; i++) {
-    if (array[i] > max)
-      max = array[i];
+  for (i = 1; i < n; i++)
+  {
+    if (v[i] > max)
+    {
+      max = v[i];
+    }
+    if (v[i] < min)
+    {
+      min = v[i];
+    }
   }
 
-  int count[100];
+  // Allocate a number of elements of all initialized at 0.
+  int *c = (int *)calloc((max - min + 1), sizeof(int));
+  int *w = (int *)malloc(n * sizeof(int));
 
-  // Initialize count array with all zeros.
-  for (int i = 0; i <= max; ++i) {
-    count[i] = 0;
+  for (i = 0; i < n; i++)
+  {
+    c[v[i] - min]++;
   }
 
-  // Store the count of each element
-  for (int i = 0; i < size; i++) {
-    count[array[i]]++;
+  for (i = 1; i < (max - min + 1); i++)
+  {
+    c[i] += c[i - 1];
   }
 
-  // Store the cummulative count of each array
-  for (int i = 1; i <= max; i++) {
-    count[i] += count[i - 1];
+  for (i = n - 1; i >= 0; i--)
+  {
+    int d = v[i] - min;
+    w[c[d] - 1] = v[i];
+    c[d] -= 1;
   }
 
-  // Find the index of each element of the original array in count array, and place the elements in output array
-  for (int i = size - 1; i >= 0; i--) {
-    output[count[array[i]] - 1] = array[i];
-    count[array[i]]--;
+  for (int i = 0; i < n; i++)
+  {
+    v[i] = w[i];
   }
 
-  // Copy the sorted elements into original array
-  for (int i = 0; i < size; i++) {
-    array[i] = output[i];
-  }
+  free(c);
+  free(w);
 }
 
 int main(int argc, char **argv)
 {
-    struct timespec a, b;
-    unsigned int t, n;
-    int i, *vetor;
+  struct timespec a, b;
+  unsigned int t, n;
+  int i, *vetor;
 
-    n = atoi(argv[1]);
-    vetor = (int *)malloc(n * sizeof(int));
-    srand(time(NULL));
-    for (i = 0; i < n; i++)
-        vetor[i] = rand();
+  n = atoi(argv[1]);
+  vetor = (int *)malloc(n * sizeof(int));
+  srand(time(NULL));
+  for (i = 0; i < n; i++)
+    vetor[i] = rand() % n;
 
-    clock_gettime(CLOCK_MONOTONIC, &b);
-    countingSort(vetor, n);
-    clock_gettime(CLOCK_MONOTONIC, &a);
+  clock_gettime(CLOCK_MONOTONIC, &b);
+  distribution_sort(vetor, n);
+  clock_gettime(CLOCK_MONOTONIC, &a);
 
-    t = (a.tv_sec * 1e9 + a.tv_nsec) - (b.tv_sec * 1e9 + b.tv_nsec);
+  t = (a.tv_sec * 1e9 + a.tv_nsec) - (b.tv_sec * 1e9 + b.tv_nsec);
 
-    printf("%u\n", t);
+  printf("%u\n", t);
 
-    free(vetor);
+  free(vetor);
 
-    return 0;
+  return 0;
 }

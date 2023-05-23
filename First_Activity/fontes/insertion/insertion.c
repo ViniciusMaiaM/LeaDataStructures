@@ -2,24 +2,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void swap(int *a, int *b);
+
 void insertionSort(int *arr, int n)
 {
-    unsigned int i, key, j;
+    unsigned int i, j;
     for (i = 1; i < n; i++)
     {
-        key = arr[i];
-        j = i - 1;
+        j = i;
 
         // Move elements of arr[0..i-1], that are greater than key, to one position ahead of their current position
-        while (j >= 0 && arr[j] > key)
+        while (j > 0 && arr[j - 1] > arr[j])
         {
-            arr[j + 1] = arr[j];
+            swap(&arr[j - 1], &arr[j]);
             j = j - 1;
         }
-        arr[j + 1] = key;
     }
 }
-
 
 int main(int argc, char **argv)
 {
@@ -31,7 +30,7 @@ int main(int argc, char **argv)
     v = (int *)malloc(n * sizeof(int));
     srand(time(NULL));
     for (i = 0; i < n; i++)
-        v[i] = rand();
+        v[i] = rand() % n;
 
     clock_gettime(CLOCK_MONOTONIC, &b);
     insertionSort(v, n);
@@ -44,4 +43,12 @@ int main(int argc, char **argv)
     free(v);
 
     return 0;
+}
+
+void swap(int *a, int *b)
+{
+    int m;
+    m = *a;
+    *a = *b;
+    *b = m;
 }

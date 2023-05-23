@@ -28,7 +28,7 @@ void selection_sort(int *arr, unsigned int size)
                 min_index = j;
         }
         // Changes the elements
-        swap(&arr[min_index], &arr[i]); 
+        swap(&arr[min_index], &arr[i]);
     }
 }
 
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
     vetor = (int *)malloc(n * sizeof(int));
     srand(time(NULL));
     for (i = 0; i < n; i++)
-        vetor[i] = rand();
+        vetor[i] = rand() % n;
 
     clock_gettime(CLOCK_MONOTONIC, &b);
     selection_sort(vetor, n);
