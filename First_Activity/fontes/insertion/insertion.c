@@ -20,6 +20,14 @@ void insertionSort(int *arr, int n)
     }
 }
 
+void swap(int *a, int *b)
+{
+    int m;
+    m = *a;
+    *a = *b;
+    *b = m;
+}
+
 int main(int argc, char **argv)
 {
     struct timespec a, b;
@@ -45,10 +53,3 @@ int main(int argc, char **argv)
     return 0;
 }
 
-void swap(int *a, int *b)
-{
-    int m;
-    m = *a;
-    *a = *b;
-    *b = m;
-}
