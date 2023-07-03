@@ -1,0 +1,9 @@
+100 203.62 4.0724 522 115 50 binary_average-50-100.txt
+200 237.3 4.746 320 168 50 binary_average-50-200.txt
+300 210.24 4.2048 352 148 50 binary_average-50-300.txt
+400 295.28 5.9056 447 202 50 binary_average-50-400.txt
+500 375.7 7.514 520 222 50 binary_average-50-500.txt
+600 304.2 6.084 446 192 50 binary_average-50-600.txt
+700 371.84 7.4368 557 207 50 binary_average-50-700.txt
+800 441.9 8.838 522 363 50 binary_average-50-800.txt
+900 553.72 11.0744 642 483 50 binary_average-50-900.txt
