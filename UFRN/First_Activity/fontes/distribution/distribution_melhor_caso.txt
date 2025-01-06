@@ -1,0 +1,9 @@
+100 2576.44 51.5288 4177 1916 50 distribution_melhor_caso-50-100.txt
+200 6465.52 129.31 9847 10040 50 distribution_melhor_caso-50-200.txt
+300 15399 307.98 9992 12900 50 distribution_melhor_caso-50-300.txt
+400 16153.9 323.078 9890 9675 50 distribution_melhor_caso-50-400.txt
+500 21614.6 432.292 29036 18675 50 distribution_melhor_caso-50-500.txt
+600 24408 488.16 28782 21545 50 distribution_melhor_caso-50-600.txt
+700 27776.3 555.526 43353 18726 50 distribution_melhor_caso-50-700.txt
+800 33990.2 679.804 57039 30967 50 distribution_melhor_caso-50-800.txt
+900 13576.6 271.532 24083 12114 50 distribution_melhor_caso-50-900.txt
