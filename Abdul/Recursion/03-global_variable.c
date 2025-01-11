@@ -18,3 +18,16 @@ int func (int n){
     }
     return 0;
 }
+
+// int x = 0; // global variable in recursion
+// int func (int n){
+//  if(n>0){
+//      x++
+//      return fun(n-1)+ x ;
+//  }
+// return 0;
+// }
+// main(){
+//  int a = 5;
+//  printf("%d", fun(a));
+// }
